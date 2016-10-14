@@ -25,7 +25,8 @@ public class SpitterController {
         this.spitterRepository = spitterRepository;
     }
     @RequestMapping(value="/register", method=GET)
-    public String showRegistrationForm() {
+    public String showRegistrationForm(Model model) {
+        model.addAttribute(new Spitter());
         return "registerForm";
     }
     @RequestMapping(value="/register", method=POST)
@@ -33,8 +34,9 @@ public class SpitterController {
         spitterRepository.save(spitter);
         return "redirect:/spitter/" +
                 spitter.getUserName();
+
     }
-    //@RequestMapping(value="/register", method=GET)
+    @RequestMapping(value="/{username}", method=GET)
     public String showSpitterProfile(
             @PathVariable String username, Model model) {
         Spitter spitter = spitterRepository.findByUsername(username);
