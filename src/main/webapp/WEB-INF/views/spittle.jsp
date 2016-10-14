@@ -1,5 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="t" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -13,3 +13,5 @@
     </div>
 </div>
 </div>
+</body>
+</html>

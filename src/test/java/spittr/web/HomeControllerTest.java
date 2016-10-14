@@ -43,7 +43,7 @@ public class HomeControllerTest {
                 new SpittleController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/spittles.jsp"))
+                        new InternalResourceView("/src/main/WEB-INF/src/main/WEB-INF/src/main/WEB-INF/src/main/views/spittles.jsp"))
                 .build();
         mockMvc.perform(get("/spittles"))
                 .andExpect(view().name("spittles"))
@@ -63,7 +63,7 @@ public class HomeControllerTest {
                 new SpittleController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/spittles.jsp"))
+                        new InternalResourceView("/src/main/WEB-INF/src/main/WEB-INF/src/main/WEB-INF/src/main/views/spittles.jsp"))
                 .build();
         mockMvc.perform(get("/spittles?max=238900&count=50"))
                 .andExpect(view().name("spittles"))

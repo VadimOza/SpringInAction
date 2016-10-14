@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.
         WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.
         InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 /**
  * Created by root on 12.10.16.
@@ -18,14 +19,15 @@ import org.springframework.web.servlet.view.
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("spitter.web")
+@ComponentScan("spittr.web")
 public class WebConfig
         extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver =
                 new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setViewClass(JstlView.class);
+        resolver.setPrefix("WEB-INF/views/");
         resolver.setSuffix(".jsp");
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;

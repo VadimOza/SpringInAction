@@ -13,6 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping("/spitter")
 public class SpitterController {
+
     private SpitterRepository spitterRepository;
 
     public SpitterController() {
@@ -33,7 +34,7 @@ public class SpitterController {
         return "redirect:/spitter/" +
                 spitter.getUserName();
     }
-
+    //@RequestMapping(value="/register", method=GET)
     public String showSpitterProfile(
             @PathVariable String username, Model model) {
         Spitter spitter = spitterRepository.findByUsername(username);
