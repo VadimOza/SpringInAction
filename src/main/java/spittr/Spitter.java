@@ -2,6 +2,7 @@ package spittr;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,21 +15,21 @@ public class Spitter {
     private long id;
 
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min=2, max=30,  message = "{firstName.size}")
     private String firstName;
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message = "{lastName.size}")
     private String lastName;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min=4, max=20, message = "{userName.size}")
     private String userName;
 
     @NotNull
-    @Size(min=4, max=30)
+    @Size(min=4, max=30,message = "{password.size}")
     private String password;
 
     @NotNull
-    @Size(min=4, max=35)
+    @Email(message = "{email.valid}")
     private String email;
 
     public String getEmail() {
