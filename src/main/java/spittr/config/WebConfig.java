@@ -39,9 +39,12 @@ public class WebConfig
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
+        messageSource.setBasename("ValidationMessages");
+        messageSource.addBasenames("Messages");
         return messageSource;
     }
+    
+
 
     @Bean
     public LocalValidatorFactoryBean validatorFactory() {

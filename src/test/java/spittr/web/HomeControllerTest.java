@@ -109,6 +109,7 @@ public class HomeControllerTest {
                         .param("firstName", "Jack")
                         .param("lastName", "Bauer")
                         .param("userName", "jbauer")
+                        .param("email", "hello@gmail.com")
                         .param("password", "24hours"))
                 .andExpect(redirectedUrl("/spitter/jbauer"));
         verify(mockRepository, atLeastOnce()).save(unsaved);
