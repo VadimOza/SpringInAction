@@ -20,6 +20,11 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 import javax.annotation.Resources;
 
@@ -47,18 +52,49 @@ public class WebConfig
         return messageSource;
     }
 
+    /**
+     * Thymeleaf
+     */
     @Bean
-    public TilesConfigurer tilesConfigurer(){
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions("/WEB-INF/layout/tiles.xml");
-        tilesConfigurer.setCheckRefresh(true);
-        return tilesConfigurer;
+    public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine);
+        return viewResolver;
+    }
+    @Bean
+    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        return templateEngine;
+    }
+    @Bean
+    public TemplateResolver templateResolver() {
+        TemplateResolver templateResolver =
+                new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        return templateResolver;
     }
 
-    @Bean
-    public ViewResolver viewResolver(){
-        return new TilesViewResolver();
-    }
+
+    /**
+     * This for Apache tiles And JSP
+     *
+     */
+
+//    @Bean
+//    public TilesConfigurer tilesConfigurer(){
+//        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+//        tilesConfigurer.setDefinitions("/WEB-INF/layout/tiles.xml");
+//        tilesConfigurer.setCheckRefresh(true);
+//        return tilesConfigurer;
+//    }
+//
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        return new TilesViewResolver();
+//    }
     
 
 
