@@ -17,6 +17,9 @@ import org.springframework.web.servlet.config.annotation.
 import org.springframework.web.servlet.view.
         InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import javax.annotation.Resources;
 
@@ -43,6 +46,19 @@ public class WebConfig
         messageSource.addBasenames("Messages");
         return messageSource;
     }
+
+    @Bean
+    public TilesConfigurer tilesConfigurer(){
+        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+        tilesConfigurer.setDefinitions("/WEB-INF/layout/tiles.xml");
+        tilesConfigurer.setCheckRefresh(true);
+        return tilesConfigurer;
+    }
+
+    @Bean
+    public ViewResolver viewResolver(){
+        return new TilesViewResolver();
+    }
     
 
 
@@ -58,16 +74,16 @@ public class WebConfig
         return validatorFactory();
     }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
-        resolver.setViewClass(JstlView.class);
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
-        resolver.setExposeContextBeansAsAttributes(true);
-        return resolver;
-    }
+//    @Bean
+//    public ViewResolver viewResolver() {
+//        InternalResourceViewResolver resolver =
+//                new InternalResourceViewResolver();
+//        resolver.setViewClass(JstlView.class);
+//        resolver.setPrefix("/WEB-INF/views/");
+//        resolver.setSuffix(".jsp");
+//        resolver.setExposeContextBeansAsAttributes(true);
+//        return resolver;
+//    }
     @Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
