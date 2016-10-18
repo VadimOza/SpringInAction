@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import spittr.Spitter;
 import spittr.Spittle;
 
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,9 +15,14 @@ import java.util.List;
 @Component
 public class MockRepSpittle implements SpittleRepository {
 
+    List<Spittle> list = new LinkedList<>();
+
     @Override
     public List<Spittle> findSpittles(long l, int i) {
-        return null;
+        if(list.isEmpty()){
+            list.add(new Spittle("Hello wolrd!", new Date()));
+        }
+        return list;
     }
 
     @Override

@@ -5,8 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.
         DefaultServletHandlerConfigurer;
@@ -27,6 +31,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import javax.annotation.Resources;
+import java.io.IOException;
 
 /**
  * Created by root on 12.10.16.
@@ -43,6 +48,28 @@ public class WebConfig
                 .addResourceLocations("/resources/");
     }
 
+    /**
+     * Standart multipart resolver
+     */
+//    @Bean
+//    public MultipartResolver multipartResolver(){
+//        return new StandardServletMultipartResolver();
+//    }
+
+    @Bean
+    public MultipartResolver multipartResolver(){
+//        try {
+//            CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//            multipartResolver.setUploadTempDir(new FileSystemResource("/tmp/spittr/uploads"));
+//            multipartResolver.setMaxUploadSize(2097152);
+//            multipartResolver.setMaxInMemorySize(0);
+//            return multipartResolver;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return new CommonsMultipartResolver();
+        return  new StandardServletMultipartResolver();
+    }
 
     @Bean
     public MessageSource messageSource() {
