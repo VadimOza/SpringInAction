@@ -82,27 +82,27 @@ public class WebConfig
     /**
      * Thymeleaf
      */
-    @Bean
-    public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine);
-        return viewResolver;
-    }
-    @Bean
-    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-        return templateEngine;
-    }
-    @Bean
-    public TemplateResolver templateResolver() {
-        TemplateResolver templateResolver =
-                new ServletContextTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-        return templateResolver;
-    }
+//    @Bean
+//    public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
+//        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+//        viewResolver.setTemplateEngine(templateEngine);
+//        return viewResolver;
+//    }
+//    @Bean
+//    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver) {
+//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//        templateEngine.setTemplateResolver(templateResolver);
+//        return templateEngine;
+//    }
+//    @Bean
+//    public TemplateResolver templateResolver() {
+//        TemplateResolver templateResolver =
+//                new ServletContextTemplateResolver();
+//        templateResolver.setPrefix("/WEB-INF/templates/");
+//        templateResolver.setSuffix(".html");
+//        templateResolver.setTemplateMode("HTML5");
+//        return templateResolver;
+//    }
 
 
     /**
@@ -137,16 +137,16 @@ public class WebConfig
         return validatorFactory();
     }
 
-//    @Bean
-//    public ViewResolver viewResolver() {
-//        InternalResourceViewResolver resolver =
-//                new InternalResourceViewResolver();
-//        resolver.setViewClass(JstlView.class);
-//        resolver.setPrefix("/WEB-INF/views/");
-//        resolver.setSuffix(".jsp");
-//        resolver.setExposeContextBeansAsAttributes(true);
-//        return resolver;
-//    }
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver resolver =
+                new InternalResourceViewResolver();
+        resolver.setViewClass(JstlView.class);
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setExposeContextBeansAsAttributes(true);
+        return resolver;
+    }
     @Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
