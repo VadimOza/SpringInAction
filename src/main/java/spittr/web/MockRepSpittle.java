@@ -1,7 +1,6 @@
 package spittr.web;
 
 import org.springframework.stereotype.Component;
-import spittr.Spitter;
 import spittr.Spittle;
 
 import java.util.Date;
@@ -15,18 +14,24 @@ import java.util.List;
 @Component
 public class MockRepSpittle implements SpittleRepository {
 
-    List<Spittle> list = new LinkedList<>();
+    List<Spittle> spittleList = new LinkedList<>();
 
     @Override
     public List<Spittle> findSpittles(long l, int i) {
-        if(list.isEmpty()){
-            list.add(new Spittle("Hello wolrd!", new Date()));
+        if(spittleList.isEmpty()){
+            spittleList.add(new Spittle("Hello wolrd!", new Date()));
         }
-        return list;
+        return spittleList;
     }
 
     @Override
     public Spittle findOne(long id) {
-        return null;
+
+        for (Spittle s :
+                spittleList) {
+            if(s.getId() == id)
+                return s;
+        }
+        return new Spittle("hello world!", new Date());
     }
 }

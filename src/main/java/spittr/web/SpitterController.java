@@ -42,14 +42,14 @@ public class SpitterController {
         model.addAttribute(new Spitter());
         return "registerForm";
     }
+//    @RequestMapping(value="/register", method=POST)
+//    public String processRegistration(@Valid Spitter spitter, Errors errors,
+//                                      @RequestPart("profilePicture") MultipartFile profilePicture, RedirectAttributes model) throws IOException {
     @RequestMapping(value="/register", method=POST)
-    public String processRegistration(@Valid Spitter spitter, Errors errors,
-                                      @RequestPart("profilePicture") MultipartFile profilePicture, RedirectAttributes model) throws IOException {
+    public String processRegistration(@Valid Spitter spitter, Errors errors, RedirectAttributes model) throws IOException {
         if (errors.hasErrors()) {
             return "registerForm";
         }
-        File imge = new File("/home/vadim/Java/"+profilePicture.getOriginalFilename());
-        profilePicture.transferTo(imge);
         spitterRepository.save(spitter);
         model.addAttribute("username",spitter.getUserName());
         model.addFlashAttribute(spitter);
