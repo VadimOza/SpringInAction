@@ -59,10 +59,10 @@ public class SpitterController {
     @RequestMapping(value="/{username}", method=GET)
     public String showSpitterProfile(
             @PathVariable String username, Model model) {
-        if (!model.containsAttribute("spitter")) {
+//        if (!model.containsAttribute("spitter")) {
             model.addAttribute(
                     spitterRepository.findByUsername(username));
-        }
+//        }
         return "profile";
     }
 }

@@ -23,7 +23,7 @@ import javax.sql.DataSource;
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/spitters/me").authenticated()
+                .antMatchers("/spitters/*").authenticated()
                 .antMatchers(HttpMethod.POST, "/spittles").authenticated()
                 .anyRequest().permitAll()
                 .and().formLogin().loginPage("/login").and().csrf().disable();

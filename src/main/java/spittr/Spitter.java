@@ -15,17 +15,17 @@ public class Spitter {
     private long id;
 
     @NotNull
-    @Size(min=2, max=30,  message = "{firstName.size}")
+    @Size(min = 2, max = 30, message = "{firstName.size}")
     private String firstName;
     @NotNull
-    @Size(min=2, max=30, message = "{lastName.size}")
+    @Size(min = 2, max = 30, message = "{lastName.size}")
     private String lastName;
     @NotNull
-    @Size(min=4, max=20, message = "{userName.size}")
+    @Size(min = 4, max = 20, message = "{userName.size}")
     private String userName;
 
     @NotNull
-    @Size(min=4, max=30,message = "{password.size}")
+    @Size(min = 4, max = 30, message = "{password.size}")
     private String password;
 
     @NotNull
@@ -36,8 +36,9 @@ public class Spitter {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Spitter setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public Spitter() {
@@ -67,32 +68,36 @@ public class Spitter {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public Spitter setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public Spitter setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public Spitter setUserName(String userName) {
         this.userName = userName;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public Spitter setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @Override

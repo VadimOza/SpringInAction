@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Created by root on 13.10.16.
  */
 
-@Component
+//@Component
 public class MockRep implements SpitterRepository {
 
     private ConcurrentLinkedQueue<Spitter> allSpitters = new ConcurrentLinkedQueue<>();

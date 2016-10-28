@@ -1,35 +1,30 @@
 package spittr.config;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.
-        InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
-import org.thymeleaf.TemplateEngine;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-import javax.annotation.Resources;
-import java.io.IOException;
+import javax.sql.DataSource;
+
 
 /**
  * Created by root on 12.10.16.
@@ -40,6 +35,9 @@ import java.io.IOException;
 @ComponentScan("spittr.web")
 public class WebConfig
         extends WebMvcConfigurerAdapter {
+
+
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
        registry.addResourceHandler("/resources/**")
@@ -67,6 +65,22 @@ public class WebConfig
 //        }
 //        return new CommonsMultipartResolver();
         return  new StandardServletMultipartResolver();
+    }
+
+    @Bean
+    public JdbcOperations jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public DataSource dataSource(){
+        MysqlDataSource ds = new MysqlDataSource();
+        ds.setServerName("localhost");
+        ds.setDatabaseName("spittr?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        ds.setPortNumber(3306);
+        ds.setUser("root");
+        ds.setPassword("vahaleoghj2123");
+        return ds;
     }
 
     @Bean
